@@ -6,8 +6,8 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 const createMockUser = (overrides?: Partial<User>): User => {
   const defaultUser: User = {
     id: 1,
-    username: 'John Doe',
-    email: 'johndoe@email.com',
+    username: 'Mohamed Adel',
+    email: 'mohamedadel@email.com',
     password: 'password1234',
     role: 'user',
     createdAt: new Date(),
@@ -50,6 +50,7 @@ describe('UsersService', () => {
 
   it('should create a user', async () => {
     const user = createMockUser();
+    (mockUserRepository.findOneBy as jest.Mock).mockResolvedValue(null); // No existing user
     (mockUserRepository.save as jest.Mock).mockResolvedValue(user);
 
     const created = await service.createUser(user);
