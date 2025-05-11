@@ -1,4 +1,10 @@
-import { Controller, Post, Body, UnauthorizedException, Res } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UnauthorizedException,
+  Res,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
 
@@ -9,7 +15,7 @@ export class AuthController {
   @Post('login')
   async login(
     @Body() body: { email: string; password: string },
-    @Res({ passthrough: true }) res: Response
+    @Res({ passthrough: true }) res: Response,
   ) {
     const user = await this.authService.validateUser(body.email, body.password);
     if (!user) {

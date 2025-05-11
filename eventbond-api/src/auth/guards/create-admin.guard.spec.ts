@@ -20,7 +20,13 @@ describe('CreateAdmin Guard', () => {
 
   it('should throw if no token for admin creation', () => {
     const context: any = {
-      switchToHttp: () => ({ getRequest: () => ({ body: { role: 'admin' }, headers: {}, cookies: {} }) }),
+      switchToHttp: () => ({
+        getRequest: () => ({
+          body: { role: 'admin' },
+          headers: {},
+          cookies: {},
+        }),
+      }),
     };
     expect(() => guard.canActivate(context)).toThrow(ForbiddenException);
   });
@@ -28,11 +34,13 @@ describe('CreateAdmin Guard', () => {
   it('should throw if token is not admin', () => {
     (jwtService.verify as jest.Mock).mockReturnValue({ role: 'user' });
     const context: any = {
-      switchToHttp: () => ({ getRequest: () => ({
-        body: { role: 'admin' },
-        headers: { authorization: 'Bearer token' },
-        cookies: {},
-      }) }),
+      switchToHttp: () => ({
+        getRequest: () => ({
+          body: { role: 'admin' },
+          headers: { authorization: 'Bearer token' },
+          cookies: {},
+        }),
+      }),
     };
     expect(() => guard.canActivate(context)).toThrow(ForbiddenException);
   });
@@ -40,11 +48,13 @@ describe('CreateAdmin Guard', () => {
   it('should allow if token is admin', () => {
     (jwtService.verify as jest.Mock).mockReturnValue({ role: 'admin' });
     const context: any = {
-      switchToHttp: () => ({ getRequest: () => ({
-        body: { role: 'admin' },
-        headers: { authorization: 'Bearer token' },
-        cookies: {},
-      }) }),
+      switchToHttp: () => ({
+        getRequest: () => ({
+          body: { role: 'admin' },
+          headers: { authorization: 'Bearer token' },
+          cookies: {},
+        }),
+      }),
     };
     expect(guard.canActivate(context)).toBe(true);
   });

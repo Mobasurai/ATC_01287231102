@@ -34,8 +34,15 @@ describe('AuthController', () => {
       const authService = controller['authService'] as any;
       authService.validateUser.mockResolvedValue(mockUser);
       authService.login.mockResolvedValue(mockToken);
-      const result = await controller.login({ email: 'a', password: 'b' }, mockRes);
-      expect(mockRes.cookie).toHaveBeenCalledWith('jwt', 'token', expect.any(Object));
+      const result = await controller.login(
+        { email: 'a', password: 'b' },
+        mockRes,
+      );
+      expect(mockRes.cookie).toHaveBeenCalledWith(
+        'jwt',
+        'token',
+        expect.any(Object),
+      );
       expect(result).toEqual({ message: 'Login successful' });
     });
 
@@ -43,7 +50,9 @@ describe('AuthController', () => {
       const mockRes: any = { cookie: jest.fn() };
       const authService = controller['authService'] as any;
       authService.validateUser.mockResolvedValue(null);
-      await expect(controller.login({ email: 'a', password: 'b' }, mockRes)).rejects.toThrow('Invalid credentials');
+      await expect(
+        controller.login({ email: 'a', password: 'b' }, mockRes),
+      ).rejects.toThrow('Invalid credentials');
     });
   });
 });

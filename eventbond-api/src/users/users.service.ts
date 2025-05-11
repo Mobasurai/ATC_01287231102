@@ -8,43 +8,45 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-    constructor(
-        @InjectRepository(User)
-        private readonly userRepository: Repository<User>,
-    ) {}
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {}
 
-    async createUser(dto: CreateUserDto): Promise<User> {
-        if (dto.password) {
-            const saltRounds = 10;
-            dto.password = await bcrypt.hash(dto.password, saltRounds);
-        }
-        if (dto.email) {
-            const existingUser = await this.userRepository.findOneBy({ email: dto.email });
-            if (existingUser) {
-                throw new ConflictException('A user with this email already exists');
-            }
-        }
-        const newUser = this.userRepository.create(dto);
-        return await this.userRepository.save(newUser);
+  async createUser(dto: CreateUserDto): Promise<User> {
+    if (dto.password) {
+      const saltRounds = 10;
+      dto.password = await bcrypt.hash(dto.password, saltRounds);
     }
-    async updateUser(id: number, dto: UpdateUserDto): Promise<User> {
-        if (dto.password) {
-            const saltRounds = 10;
-            dto.password = await bcrypt.hash(dto.password, saltRounds);
-        }
-        await this.userRepository.update(id, dto);
-        return await this.userRepository.findOneBy({ id });
+    if (dto.email) {
+      const existingUser = await this.userRepository.findOneBy({
+        email: dto.email,
+      });
+      if (existingUser) {
+        throw new ConflictException('A user with this email already exists');
+      }
     }
-    async deleteUser(id: number): Promise<void> {
-        await this.userRepository.delete(id);
+    const newUser = this.userRepository.create(dto);
+    return await this.userRepository.save(newUser);
+  }
+  async updateUser(id: number, dto: UpdateUserDto): Promise<User> {
+    if (dto.password) {
+      const saltRounds = 10;
+      dto.password = await bcrypt.hash(dto.password, saltRounds);
     }
-    async findAllUsers(): Promise<User[]> {
-        return await this.userRepository.find();
-    }
-    async findUserById(id: number): Promise<User> {
-        return await this.userRepository.findOneBy({ id });
-    }
-    async findUserByEmail(email: string): Promise<User> {
-        return await this.userRepository.findOneBy({ email });
-    }
+    await this.userRepository.update(id, dto);
+    return await this.userRepository.findOneBy({ id });
+  }
+  async deleteUser(id: number): Promise<void> {
+    await this.userRepository.delete(id);
+  }
+  async findAllUsers(): Promise<User[]> {
+    return await this.userRepository.find();
+  }
+  async findUserById(id: number): Promise<User> {
+    return await this.userRepository.findOneBy({ id });
+  }
+  async findUserByEmail(email: string): Promise<User> {
+    return await this.userRepository.findOneBy({ email });
+  }
 }

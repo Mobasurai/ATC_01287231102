@@ -23,9 +23,15 @@ describe('UsersController', () => {
     service = {
       findAllUsers: jest.fn().mockResolvedValue([mockUser]),
       findUserById: jest.fn().mockResolvedValue(mockUser),
-      createUser:   jest.fn().mockImplementation(dto => Promise.resolve({ ...mockUser, ...dto })),
-      updateUser:   jest.fn().mockImplementation((id, dto) => Promise.resolve({ ...mockUser, ...dto })),
-      deleteUser:   jest.fn().mockResolvedValue(undefined),
+      createUser: jest
+        .fn()
+        .mockImplementation((dto) => Promise.resolve({ ...mockUser, ...dto })),
+      updateUser: jest
+        .fn()
+        .mockImplementation((id, dto) =>
+          Promise.resolve({ ...mockUser, ...dto }),
+        ),
+      deleteUser: jest.fn().mockResolvedValue(undefined),
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -61,7 +67,12 @@ describe('UsersController', () => {
 
   describe('createUser', () => {
     it('creates and returns a new user', async () => {
-      const dto: CreateUserDto = { username: 'Mohamed', email: 'mohamed@example.com', role: 'admin', password: 'password1234' };
+      const dto: CreateUserDto = {
+        username: 'Mohamed',
+        email: 'mohamed@example.com',
+        role: 'admin',
+        password: 'password1234',
+      };
       const result = await controller.createUser(dto);
       expect(service.createUser).toHaveBeenCalledWith(dto);
       expect(result).toEqual({ ...mockUser, ...dto });

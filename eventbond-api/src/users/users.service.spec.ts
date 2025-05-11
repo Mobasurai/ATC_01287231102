@@ -20,12 +20,12 @@ describe('UsersService', () => {
   let service: UsersService;
 
   const mockUserRepository = {
-    create:    jest.fn().mockReturnValue({ id: 1 } as User),
-    save:      jest.fn().mockResolvedValue(undefined as any),
-    update:    jest.fn().mockReturnValue({ id: 1 } as User),
+    create: jest.fn().mockReturnValue({ id: 1 } as User),
+    save: jest.fn().mockResolvedValue(undefined as any),
+    update: jest.fn().mockReturnValue({ id: 1 } as User),
     findOneBy: jest.fn().mockResolvedValue(createMockUser()),
-    find:      jest.fn().mockResolvedValue([createMockUser()]),
-    delete:    jest.fn().mockResolvedValue({ affected: 1 }),
+    find: jest.fn().mockResolvedValue([createMockUser()]),
+    delete: jest.fn().mockResolvedValue({ affected: 1 }),
   };
 
   beforeEach(async () => {

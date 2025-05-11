@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable, ForbiddenException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  ForbiddenException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -14,7 +19,10 @@ export class CreateAdmin implements CanActivate {
     }
 
     let token: string | undefined;
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith('Bearer ')
+    ) {
       token = req.headers.authorization.split(' ')[1];
     } else if (req.cookies && req.cookies['jwt']) {
       token = req.cookies['jwt'];
@@ -25,7 +33,9 @@ export class CreateAdmin implements CanActivate {
     }
 
     try {
-      const payload = this.jwtService.verify(token, { secret: process.env.JWT_SECRET });
+      const payload = this.jwtService.verify(token, {
+        secret: process.env.JWT_SECRET,
+      });
       if (!payload || payload.role !== 'admin') {
         throw new ForbiddenException('Action is forbidden');
       }

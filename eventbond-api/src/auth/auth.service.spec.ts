@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import bcrypt from 'bcrypt';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -24,12 +25,23 @@ describe('AuthService', () => {
 
   describe('validateUser', () => {
     it('should return user without password if credentials are valid', async () => {
-      const user = { id: 1, username: 'test', email: 'a', password: 'hashed', role: 'admin' };
+      const user = {
+        id: 1,
+        username: 'test',
+        email: 'a',
+        password: 'hashed',
+        role: 'admin',
+      };
       const usersService = service['usersService'] as any;
       usersService.findUserByEmail = jest.fn().mockResolvedValue(user);
-      jest.spyOn(require('bcrypt'), 'compare').mockResolvedValue(true);
+      jest.spyOn(bcrypt, 'compare').mockImplementation(async () => true);
       const result = await service.validateUser('a', 'b');
-      expect(result).toEqual({ id: 1, username: 'test', email: 'a', role: 'admin' });
+      expect(result).toEqual({
+        id: 1,
+        username: 'test',
+        email: 'a',
+        role: 'admin',
+      });
     });
     it('should return null if user not found', async () => {
       const usersService = service['usersService'] as any;
@@ -38,10 +50,16 @@ describe('AuthService', () => {
       expect(result).toBeNull();
     });
     it('should return null if password does not match', async () => {
-      const user = { id: 1, username: 'test', email: 'a', password: 'hashed', role: 'admin' };
+      const user = {
+        id: 1,
+        username: 'test',
+        email: 'a',
+        password: 'hashed',
+        role: 'admin',
+      };
       const usersService = service['usersService'] as any;
       usersService.findUserByEmail = jest.fn().mockResolvedValue(user);
-      jest.spyOn(require('bcrypt'), 'compare').mockResolvedValue(false);
+      jest.spyOn(bcrypt, 'compare').mockImplementation(async () => false);
       const result = await service.validateUser('a', 'b');
       expect(result).toBeNull();
     });

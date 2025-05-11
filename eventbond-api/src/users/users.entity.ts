@@ -1,33 +1,39 @@
-import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn } from "typeorm";
-import { IsEmail, IsNotEmpty, IsString, IsDate } from "class-validator";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
-    
-    @Column()
-    @IsString()
-    @IsNotEmpty()
-    username: string;
-    
-    @Column({ unique: true })
-    @IsEmail()
-    email: string;
-    
-    @Column()
-    @IsString()
-    @IsNotEmpty()
-    password: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    @IsString()
-    @IsNotEmpty()
-    role: string;
+  @Column()
+  @IsString()
+  @IsNotEmpty()
+  username: string;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @Column({ unique: true })
+  @IsEmail()
+  email: string;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @Column()
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  @Column()
+  @IsString()
+  @IsNotEmpty()
+  role: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
