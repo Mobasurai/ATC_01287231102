@@ -3,6 +3,9 @@
 /node_modules
 /build
 
+# image uploads
+/eventbond-uploads
+
 # Logs
 logs
 *.log

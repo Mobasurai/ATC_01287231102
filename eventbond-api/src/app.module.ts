@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { EventsModule } from './events/events.module';
 import { CategoriesModule } from './categories/categories.module';
 import { BookingsModule } from './bookings/bookings.module';
+import { EventImageModule } from './events/event-image.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { BookingsModule } from './bookings/bookings.module';
     EventsModule,
     CategoriesModule,
     BookingsModule,
+    EventImageModule,
   ],
   controllers: [AppController, UsersController],
   providers: [AppService, UsersService],

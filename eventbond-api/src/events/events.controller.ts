@@ -21,28 +21,28 @@ export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Get('getEvents')
+  @Get('/getEvents')
   @Roles('admin', 'user')
   async getEvents() {
     return this.eventsService.findAll();
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Get('getEvent/:id')
+  @Get('/getEvent/:id')
   @Roles('admin', 'user')
   async getEvent(@Param('id') id: string) {
     return this.eventsService.findOne(+id);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Post('createEvent')
+  @Post('/createEvent')
   @Roles('admin')
   async createEvent(@Body() eventData: CreateEventDto, @Request() req) {
     return this.eventsService.create(eventData, req.user);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Patch('updateEvent/:id')
+  @Patch('/updateEvent/:id')
   @Roles('admin')
   async updateEvent(
     @Param('id') id: string,
@@ -53,7 +53,7 @@ export class EventsController {
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Delete('deleteEvent/:id')
+  @Delete('/deleteEvent/:id')
   @Roles('admin')
   async deleteEvent(@Param('id') id: string, @Request() req) {
     return this.eventsService.remove(+id, req.user);
