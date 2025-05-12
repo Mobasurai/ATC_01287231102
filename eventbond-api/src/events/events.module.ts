@@ -12,5 +12,6 @@ import { JwtStrategy } from '../auth/jwt.strategy';
   imports: [TypeOrmModule.forFeature([Event, Category]), UsersModule],
   providers: [EventsService, RolesGuard, JwtStrategy],
   controllers: [EventsController],
+  exports: [EventsService],
 })
 export class EventsModule {}

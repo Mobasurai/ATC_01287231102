@@ -10,6 +10,7 @@ import { User } from './users/users.entity';
 import { AuthModule } from './auth/auth.module';
 import { EventsModule } from './events/events.module';
 import { CategoriesModule } from './categories/categories.module';
+import { BookingsModule } from './bookings/bookings.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CategoriesModule } from './categories/categories.module';
     AuthModule,
     EventsModule,
     CategoriesModule,
+    BookingsModule,
   ],
   controllers: [AppController, UsersController],
   providers: [AppService, UsersService],
