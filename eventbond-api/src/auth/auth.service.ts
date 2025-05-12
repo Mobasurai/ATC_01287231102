@@ -13,7 +13,6 @@ export class AuthService {
   async validateUser(email: string, password: string) {
     const user = await this.usersService.findUserByEmail(email);
     if (user && (await bcrypt.compare(password, user.password))) {
-      // Return user object without password property
       const result = { ...user };
       delete result.password;
       return result;

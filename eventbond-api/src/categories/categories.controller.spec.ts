@@ -46,7 +46,7 @@ describe('CategoriesController', () => {
   it('getCategory should return a category', async () => {
     const result = { id: 1, name: 'Test' };
     mockCategoriesService.findOne.mockResolvedValue(result);
-    expect(await controller.getCategory('1')).toBe(result);
+    expect(await controller.getCategory(1)).toBe(result);
     expect(mockCategoriesService.findOne).toHaveBeenCalledWith(1);
   });
 
@@ -62,7 +62,7 @@ describe('CategoriesController', () => {
 
   it('remove should delete a category', async () => {
     mockCategoriesService.remove.mockResolvedValue(undefined);
-    expect(await controller.remove('1')).toBeUndefined();
+    expect(await controller.remove(1)).toBeUndefined();
     expect(mockCategoriesService.remove).toHaveBeenCalledWith(1);
   });
 });

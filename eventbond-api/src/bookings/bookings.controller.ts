@@ -49,21 +49,21 @@ export class BookingsController {
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles('admin')
   @Get('/getBooking/:id')
-  async getBooking(@Param('id') id: string) {
-    return this.bookingsService.findOne(Number(id));
+  async getBooking(@Param('id') id: number) {
+    return this.bookingsService.findOne(id);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles('admin')
   @Delete('/removeBooking/:id')
-  async remove(@Param('id') id: string) {
-    return this.bookingsService.remove(Number(id));
+  async remove(@Param('id') id: number) {
+    return this.bookingsService.remove(id);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles('user')
   @Delete('/removeOwnBooking/:id')
-  async removeOwnBooking(@Param('id') id: string, @Request() req) {
-    return this.bookingsService.removeByUser(Number(id), req.user.id);
+  async removeOwnBooking(@Param('id') id: number, @Request() req) {
+    return this.bookingsService.removeByUser(id, req.user.id);
   }
 }

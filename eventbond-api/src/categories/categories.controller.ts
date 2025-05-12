@@ -23,8 +23,8 @@ export class CategoriesController {
   }
 
   @Get('/getCategory/:id')
-  async getCategory(@Param('id') id: string) {
-    return this.categoriesService.findOne(Number(id));
+  async getCategory(@Param('id') id: number) {
+    return this.categoriesService.findOne(id);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -37,7 +37,7 @@ export class CategoriesController {
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles('admin')
   @Delete('/updateCategory/:id')
-  async remove(@Param('id') id: string) {
-    return this.categoriesService.remove(Number(id));
+  async remove(@Param('id') id: number) {
+    return this.categoriesService.remove(id);
   }
 }

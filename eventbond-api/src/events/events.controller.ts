@@ -23,15 +23,18 @@ export class EventsController {
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Get('/getEvents')
   @Roles('admin', 'user')
-  async getEvents() {
-    return this.eventsService.findAll();
+  async getEvents(
+    @Body('page') page: number = 1,
+    @Body('limit') limit: number = 10,
+  ) {
+    return this.eventsService.findAllPaginated(page, limit);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Get('/getEvent/:id')
   @Roles('admin', 'user')
-  async getEvent(@Param('id') id: string) {
-    return this.eventsService.findOne(+id);
+  async getEvent(@Param('id') id: number) {
+    return this.eventsService.findOne(id);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -45,17 +48,29 @@ export class EventsController {
   @Patch('/updateEvent/:id')
   @Roles('admin')
   async updateEvent(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() eventData: UpdateEventDto,
     @Request() req,
   ) {
-    return this.eventsService.update(+id, eventData, req.user);
+    return this.eventsService.update(id, eventData, req.user);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Delete('/deleteEvent/:id')
   @Roles('admin')
-  async deleteEvent(@Param('id') id: string, @Request() req) {
-    return this.eventsService.remove(+id, req.user);
+  async deleteEvent(@Param('id') id: number, @Request() req) {
+    return this.eventsService.remove(id, req.user);
+  }
+
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Get('/searchEvents')
+  @Roles('admin', 'user')
+  async searchEvents(
+    @Body('searchText') searchText?: string,
+    @Body('categoryId') categoryId?: number,
+    @Body('page') page: number = 1,
+    @Body('limit') limit: number = 10,
+  ) {
+    return this.eventsService.searchEvents(searchText, categoryId, page, limit);
   }
 }

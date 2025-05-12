@@ -4,7 +4,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Like } from 'typeorm';
 import { Event } from './event.entity';
 import { User } from '../users/users.entity';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -19,6 +19,18 @@ export class EventsService {
 
   async findAll(): Promise<Event[]> {
     return this.eventsRepository.find();
+  }
+
+  async findAllPaginated(
+    page = 1,
+    limit = 10,
+  ): Promise<{ data: Event[]; total: number; page: number; limit: number }> {
+    const [data, total] = await this.eventsRepository.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+      order: { startDate: 'DESC' },
+    });
+    return { data, total, page, limit };
   }
 
   async findOne(id: number): Promise<Event> {
@@ -61,5 +73,27 @@ export class EventsService {
     if (user.role !== 'admin')
       throw new ForbiddenException('Action is forbidden');
     await this.eventsRepository.remove(event);
+  }
+
+  async searchEvents(
+    searchText?: string,
+    categoryId?: number,
+    page = 1,
+    limit = 10,
+  ): Promise<{ data: Event[]; total: number; page: number; limit: number }> {
+    const where: any = {};
+    if (searchText) {
+      where.title = Like(`%${searchText}%`);
+    }
+    if (categoryId) {
+      where.categoryId = categoryId;
+    }
+    const [data, total] = await this.eventsRepository.findAndCount({
+      where,
+      skip: (page - 1) * limit,
+      take: limit,
+      order: { startDate: 'DESC' },
+    });
+    return { data, total, page, limit };
   }
 }

@@ -11,6 +11,7 @@ const mockEventRepository = () => ({
   save: jest.fn(),
   remove: jest.fn(),
   update: jest.fn(),
+  findAndCount: jest.fn(),
 });
 
 describe('EventsService', () => {
@@ -212,5 +213,83 @@ describe('EventsService', () => {
     await expect(
       service.remove(1, { id: 2, role: 'user' } as any),
     ).rejects.toThrow('Action is forbidden');
+  });
+
+  it('should return paginated events', async () => {
+    const paginatedResult = { data: [{ id: 1 }], total: 1, page: 1, limit: 10 };
+    jest.spyOn(repo, 'findAndCount').mockResolvedValue([[{ id: 1 }], 1] as any);
+    const result = await service.findAllPaginated(1, 10);
+    expect(result).toEqual(paginatedResult);
+    expect(repo.findAndCount).toHaveBeenCalledWith({
+      skip: 0,
+      take: 10,
+      order: { startDate: 'DESC' },
+    });
+  });
+
+  it('should search events by title', async () => {
+    const paginatedResult = {
+      data: [{ id: 1, title: 'Music Fest' }],
+      total: 1,
+      page: 1,
+      limit: 10,
+    };
+    jest
+      .spyOn(repo, 'findAndCount')
+      .mockResolvedValue([[{ id: 1, title: 'Music Fest' }], 1] as any);
+    const result = await service.searchEvents('Music', undefined, 1, 10);
+    expect(result).toEqual(paginatedResult);
+    expect(repo.findAndCount).toHaveBeenCalledWith({
+      where: { title: expect.any(Object) },
+      skip: 0,
+      take: 10,
+      order: { startDate: 'DESC' },
+    });
+  });
+
+  it('should filter events by category', async () => {
+    const paginatedResult = {
+      data: [{ id: 2, title: 'Tech Expo', categoryId: 5 }],
+      total: 1,
+      page: 1,
+      limit: 10,
+    };
+    jest
+      .spyOn(repo, 'findAndCount')
+      .mockResolvedValue([
+        [{ id: 2, title: 'Tech Expo', categoryId: 5 }],
+        1,
+      ] as any);
+    const result = await service.searchEvents(undefined, 5, 1, 10);
+    expect(result).toEqual(paginatedResult);
+    expect(repo.findAndCount).toHaveBeenCalledWith({
+      where: { categoryId: 5 },
+      skip: 0,
+      take: 10,
+      order: { startDate: 'DESC' },
+    });
+  });
+
+  it('should search and filter events by title and category', async () => {
+    const paginatedResult = {
+      data: [{ id: 3, title: 'Music Tech', categoryId: 2 }],
+      total: 1,
+      page: 1,
+      limit: 10,
+    };
+    jest
+      .spyOn(repo, 'findAndCount')
+      .mockResolvedValue([
+        [{ id: 3, title: 'Music Tech', categoryId: 2 }],
+        1,
+      ] as any);
+    const result = await service.searchEvents('Music', 2, 1, 10);
+    expect(result).toEqual(paginatedResult);
+    expect(repo.findAndCount).toHaveBeenCalledWith({
+      where: { title: expect.any(Object), categoryId: 2 },
+      skip: 0,
+      take: 10,
+      order: { startDate: 'DESC' },
+    });
   });
 });

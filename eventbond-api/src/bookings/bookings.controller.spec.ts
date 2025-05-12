@@ -59,12 +59,12 @@ describe('BookingsController', () => {
 
   it('should get a booking by id', async () => {
     mockBookingsService.findOne.mockResolvedValue('booking1');
-    const result = await controller.getBooking('1');
+    const result = await controller.getBooking(1);
     expect(result).toBe('booking1');
   });
 
   it('should remove a booking', async () => {
     mockBookingsService.remove.mockResolvedValue(undefined);
-    await expect(controller.remove('1')).resolves.toBeUndefined();
+    await expect(controller.remove(1)).resolves.toBeUndefined();
   });
 });
