@@ -1,0 +1,86 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Create your account
+      </h2>
+    </div>
+    <form class="mt-8 space-y-6" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="username" class="sr-only">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required formControlName="username"
+                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 placeholder="Username">
+          <div *ngIf="signupForm.get('username')?.invalid && (signupForm.get('username')?.dirty || signupForm.get('username')?.touched)"
+               class="text-red-500 text-xs mt-1">
+            <div *ngIf="signupForm.get('username')?.errors?.['required']">
+              Username is required.
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="email-address" class="sr-only">Email address</label>
+          <input id="email-address" name="email" type="email" autocomplete="email" required formControlName="email"
+                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 placeholder="Email address">
+          <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)"
+               class="text-red-500 text-xs mt-1">
+            <div *ngIf="signupForm.get('email')?.errors?.['required']">
+              Email is required.
+            </div>
+            <div *ngIf="signupForm.get('email')?.errors?.['email']">
+              Please enter a valid email address.
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input id="password" name="password" type="password" autocomplete="new-password" required formControlName="password"
+                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 placeholder="Password (min. 6 characters)">
+          <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)"
+               class="text-red-500 text-xs mt-1">
+            <div *ngIf="signupForm.get('password')?.errors?.['required']">
+              Password is required.
+            </div>
+            <div *ngIf="signupForm.get('password')?.errors?.['minlength']">
+              Password must be at least 6 characters long.
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="confirm-password" class="sr-only">Confirm Password</label>
+          <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required formControlName="confirmPassword"
+                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 placeholder="Confirm Password">
+          <div *ngIf="signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)"
+               class="text-red-500 text-xs mt-1">
+            <div *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">
+              Confirming password is required.
+            </div>
+          </div>
+          <div *ngIf="signupForm.errors?.['mismatch'] && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)"
+                class="text-red-500 text-xs mt-1">
+                Passwords do not match.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="text-sm">
+          <a routerLink="/auth/signin" class="font-medium text-indigo-600 hover:text-indigo-500">
+            Already have an account? Sign in
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="signupForm.invalid"
+                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300">
+          Sign up
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
