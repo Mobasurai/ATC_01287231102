@@ -8,12 +8,11 @@ const routes: Routes = [
   {
     path: '',
     component: EventListComponent,
-    canActivate: [authGuard] // Protect the list of events
+    canActivate: [authGuard]
   },
   {
     path: ':id',
     component: EventDetailComponent,
-    // canActivate: [authGuard] // Temporarily commented out for debugging
   }
 ];
 

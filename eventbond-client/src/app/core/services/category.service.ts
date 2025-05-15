@@ -4,8 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
-// Re-using the Category interface from EventService, ensure it's accessible
-// or redefine/import if necessary. For now, assuming it's:
+
+
 export interface Category {
   id: number;
   name: string;
@@ -20,14 +20,14 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/getCategories`) // Assuming endpoint is /getCategories
+    return this.http.get<Category[]>(`${this.apiUrl}/getCategories`) 
       .pipe(
         catchError(this.handleError)
       );
   }
 
   createCategory(categoryData: { name: string }): Observable<Category> {
-    return this.http.post<Category>(`${this.apiUrl}/createCategory`, categoryData) // Assuming endpoint is /createCategory
+    return this.http.post<Category>(`${this.apiUrl}/createCategory`, categoryData) 
       .pipe(
         catchError(this.handleError)
       );

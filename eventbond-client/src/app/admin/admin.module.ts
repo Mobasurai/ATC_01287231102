@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
@@ -14,9 +14,9 @@ import { AdminEventFormComponent } from './components/admin-event-form/admin-eve
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    AdminDashboardComponent, // Added: standalone component
-    AdminEventListComponent, // Added: standalone component
-    AdminEventFormComponent  // Added: standalone component
+    AdminDashboardComponent,
+    AdminEventListComponent,
+    AdminEventFormComponent
   ]
 })
 export class AdminModule { }

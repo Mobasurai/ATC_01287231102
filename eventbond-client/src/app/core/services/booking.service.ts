@@ -4,7 +4,7 @@ import { map, catchError, switchMap, tap, filter, take } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { AuthService, User } from './auth.service';
 import { EventService, Event } from './event.service';
-import { environment } from '../../../environments/environment'; // Import environment
+import { environment } from '../../../environments/environment'; 
 
 export interface Booking {
   id: string;
@@ -24,7 +24,7 @@ export interface Booking {
   providedIn: 'root'
 })
 export class BookingService {
-  private apiUrl = `${environment.apiUrl}/bookings`; // Use environment.apiUrl
+  private apiUrl = `${environment.apiUrl}/bookings`; 
   private userBookingsSubject = new BehaviorSubject<Booking[]>([]);
   public userBookings$: Observable<Booking[]> = this.userBookingsSubject.asObservable();
 
@@ -36,9 +36,9 @@ export class BookingService {
     this.authService.currentUser$.pipe(
       switchMap(user => {
         if (user && user.id) {
-          return this.getUserBookings(); // Fetch bookings when user logs in
+          return this.getUserBookings(); 
         } else {
-          this.userBookingsSubject.next([]); // Clear bookings if no user
+          this.userBookingsSubject.next([]); 
           return of([]);
         }
       })
@@ -56,10 +56,10 @@ export class BookingService {
   getUserBookings(): Observable<Booking[]> {
     const userId = this.authService.getCurrentUserId();
     if (!userId) {
-      this.userBookingsSubject.next([]); // Clear bookings if no user
+      this.userBookingsSubject.next([]); 
       return of([]);
     }
-    // Corrected URL to match the backend controller
+    
     return this.http.get<Booking[]>(`${this.apiUrl}/getUserBookings`).pipe(
       tap(bookings => this.userBookingsSubject.next(bookings)),
       catchError(this.handleError)
@@ -71,7 +71,7 @@ export class BookingService {
     if (!userId) {
       return throwError(() => new Error('User not logged in'));
     }
-    // Corrected URL to match the backend controller
+    
     return this.http.post<Booking>(`${this.apiUrl}/createBooking`, { eventId, userId, numberOfTickets }).pipe(
       tap(newBooking => {
         const currentBookings = this.userBookingsSubject.getValue();

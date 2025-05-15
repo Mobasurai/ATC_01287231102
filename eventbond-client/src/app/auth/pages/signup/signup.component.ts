@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../core/services/auth.service'; // Import AuthService
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService // Inject AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -40,11 +40,8 @@ export class SignupComponent implements OnInit {
     this.errorMessage = null;
     if (this.signupForm.valid) {
       const { confirmPassword, ...userData } = this.signupForm.value;
-      // The API expects: username, email, password, role
-      // 'role' is added by the AuthService, defaulting to 'user'
       this.authService.signup(userData).subscribe({
         next: () => {
-          // Navigate to signin page with a success message
           this.router.navigate(['/auth/signin'], { queryParams: { signupSuccess: 'true' } });
         },
         error: (err) => {

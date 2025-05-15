@@ -8,16 +8,13 @@
     <ng-template #noEvents>
       <div class="text-center py-12">
         <p class="text-xl text-gray-600">No events scheduled at the moment. Please check back later!</p>
-        <!-- Optionally, add a link to suggest an event or contact admin -->
       </div>
     </ng-template>
   </div>
 
   <ng-template #loadingOrError>
-    <!-- Basic Loading Spinner -->
     <div class="flex justify-center items-center py-12">
       <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-500"></div> 
     </div>
-    <!-- TODO: Add more sophisticated loading/error state handling, possibly based on observable status -->
   </ng-template>
 </div>

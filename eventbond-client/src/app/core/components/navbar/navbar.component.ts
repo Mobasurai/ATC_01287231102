@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'; // Added OnDestroy
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService, User } from '../../services/auth.service'; // Corrected path, imported User
-import { Subscription } from 'rxjs'; // Imported Subscription
+import { AuthService, User } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs'; // Imported Subscription
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit, OnDestroy { // Implemented OnDestroy
+export class NavbarComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
   isAdmin: boolean = false;
   private userSubscription: Subscription | undefined;
@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit, OnDestroy { // Implemented OnDes
     this.authService.logout();
   }
 
-  ngOnDestroy(): void { // Added ngOnDestroy to unsubscribe
+  ngOnDestroy(): void {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }

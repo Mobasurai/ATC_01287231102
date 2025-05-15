@@ -11,8 +11,8 @@ import { SignupComponent } from './pages/signup/signup.component';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule, // Add ReactiveFormsModule here
-    SigninComponent,   // Import standalone components
+    ReactiveFormsModule,
+    SigninComponent,
     SignupComponent
   ]
 })

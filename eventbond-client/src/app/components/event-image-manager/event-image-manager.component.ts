@@ -16,7 +16,7 @@ export class EventImageManagerComponent implements OnInit {
 
   selectedFile: File | null = null;
   isPrimaryImage: boolean = false;
-  eventImages: EventImageRef[] = []; // Changed from EventImage[] to EventImageRef[]
+  eventImages: EventImageRef[] = [];
   uploading: boolean = false;
   loadingImages: boolean = false;
   errorMessage: string | null = null;
@@ -25,8 +25,7 @@ export class EventImageManagerComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.eventId) {
-      this.errorMessage = 'Event ID is required to manage images.';
-      console.error('Event ID is missing for EventImageManagerComponent');
+      this.errorMessage = 'Event ID is required.';
       return;
     }
     this.loadEventImages();
@@ -41,12 +40,11 @@ export class EventImageManagerComponent implements OnInit {
     this.loadingImages = true;
     this.errorMessage = null;
     this.eventImageService.getImagesByEvent(this.eventId).subscribe({
-      next: (images: EventImageRef[]) => { // Use EventImageRef[] for the list of images
+      next: (images: EventImageRef[]) => {
         this.eventImages = images;
         this.loadingImages = false;
       },
       error: (err) => {
-        console.error('Error fetching images:', err);
         this.errorMessage = 'Failed to load images. ' + (err.error?.message || err.message);
         this.loadingImages = false;
       }
@@ -59,7 +57,7 @@ export class EventImageManagerComponent implements OnInit {
       return;
     }
     if (!this.eventId) {
-      this.errorMessage = 'Event ID is missing, cannot upload image.';
+      this.errorMessage = 'Event ID is missing';
       return;
     }
 
@@ -68,7 +66,7 @@ export class EventImageManagerComponent implements OnInit {
 
     this.eventImageService.uploadImage(this.eventId, this.selectedFile, this.isPrimaryImage)
       .subscribe({
-        next: (uploadedImage: EventImageUploadResponse) => { // Use EventImageUploadResponse for the upload result
+        next: (uploadedImage: EventImageUploadResponse) => {
           console.log('Image uploaded:', uploadedImage);
           this.loadEventImages(); 
           this.selectedFile = null;

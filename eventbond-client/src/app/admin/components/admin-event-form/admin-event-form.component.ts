@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'; // Added OnDestroy
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService, Event } from '../../../core/services/event.service';
-import { CategoryService, Category } from '../../../core/services/category.service'; // Import CategoryService and Category
-import { Subscription, Observable, of, throwError } from 'rxjs'; // Import Observable, of, throwError
-import { switchMap, catchError, tap, map } from 'rxjs/operators'; // Import switchMap, catchError, tap, map
+import { CategoryService, Category } from '../../../core/services/category.service';
+import { Subscription, Observable, of, throwError } from 'rxjs';
+import { switchMap, catchError, tap, map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -28,7 +28,7 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private eventService: EventService,
-    private categoryService: CategoryService, // Inject CategoryService
+    private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -39,12 +39,12 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
       location: ['', Validators.required],
       description: ['', Validators.required],
       organizer: ['', Validators.required],
-      selectedCategoryId: ['', Validators.required], // For existing categories dropdown
-      newCategoryName: [''], // For creating a new category
+      selectedCategoryId: ['', Validators.required],
+      newCategoryName: [''],
       price: [0, [Validators.required, Validators.min(0)]],
       seatsAvailable: [0, [Validators.required, Validators.min(0)]],
-      mainImageFile: [null], // For the main image file
-      additionalImageFiles: this.fb.array([]) // For additional image files
+      mainImageFile: [null],
+      additionalImageFiles: this.fb.array([])
     });
   }
 
@@ -58,19 +58,17 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
         this.eventService.getEventById(this.eventId).subscribe({
           next: (event) => {
             if (event) {
-              // Patch basic form values
               this.eventForm.patchValue({
-                name: event.title, // Changed from event.name
-                date: event.startDate.split('T')[0], // Assuming startDate is ISO string
+                name: event.title,
+                date: event.startDate.split('T')[0],
                 time: new Date(event.startDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }), // Assuming startDate is ISO string
-                location: event.venue, // Changed from event.location
+                location: event.venue,
                 description: event.description,
                 organizer: event.organizer,
-                selectedCategoryId: event.category?.id || '', // Set selected category
+                selectedCategoryId: event.category?.id || '',
                 price: event.price,
                 seatsAvailable: event.seatsAvailable
               });
-              // TODO: Handle loading existing images for edit mode (will require fetching them and displaying previews)
             } else {
               this.error = 'Event not found.';
             }
@@ -85,7 +83,6 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
       }
     });
 
-    // When newCategoryName has a value, selectedCategoryId should be disabled/cleared and vice-versa
     this.eventForm.get('newCategoryName')?.valueChanges.subscribe(value => {
       if (value) {
         this.eventForm.get('selectedCategoryId')?.disable();
@@ -110,7 +107,7 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
       catchError(err => {
         this.error = 'Failed to load categories.';
         console.error(err);
-        return of([]); // Return empty array on error
+        return of([]);
       })
     );
   }
@@ -120,24 +117,21 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
   }
 
   addAdditionalImageField(): void {
-    this.additionalImageFilesArray.push(this.fb.control(null)); // Store null initially, will hold File object
-    // TODO: Add preview logic and specific file handling for each additional image
+    this.additionalImageFilesArray.push(this.fb.control(null));
   }
 
-  onMainImageSelected(event: any): void { // Changed type from Event to any
+  onMainImageSelected(event: any): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.eventForm.patchValue({ mainImageFile: file });
       this.eventForm.get('mainImageFile')?.updateValueAndValidity();
-      // TODO: Add preview logic if needed
     }
   }
 
-  onAdditionalImageSelected(event: any, index: number): void { // Changed type from Event to any
+  onAdditionalImageSelected(event: any, index: number): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.additionalImageFilesArray.at(index).setValue(file);
-      // TODO: Add preview logic if needed
     }
   }
 
@@ -147,7 +141,6 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.eventForm.invalid) {
-      // Check if the error is due to category selection
       if (this.eventForm.get('selectedCategoryId')?.hasError('required') && !this.eventForm.get('newCategoryName')?.value) {
          this.error = 'Please select an existing category or enter a name for a new category.';
       } else {
@@ -187,9 +180,8 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
           categoryId: categoryId
         };
 
-        // Prepare FormData
         const formData = new FormData();
-        formData.append('eventData', JSON.stringify(eventPayload)); // Send event data as JSON string
+        formData.append('eventData', JSON.stringify(eventPayload));
 
         const mainImage = this.eventForm.get('mainImageFile')?.value;
         if (mainImage) {
@@ -199,14 +191,14 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
         this.additionalImageFilesArray.controls.forEach((control, index) => {
           const file = control.value;
           if (file) {
-            formData.append('additionalImages', file); // Backend will receive an array of files for 'additionalImages'
+            formData.append('additionalImages', file);
           }
         });
         
         if (this.isEditMode && this.eventId) {
-          return this.eventService.updateEventWithFiles(this.eventId, formData); // New call with FormData
+          return this.eventService.updateEventWithFiles(this.eventId, formData);
         } else {
-          return this.eventService.createEventWithFiles(formData); // New call with FormData
+          return this.eventService.createEventWithFiles(formData);
         }
       })
     ).subscribe({
@@ -246,7 +238,7 @@ export class AdminEventFormComponent implements OnInit, OnDestroy {
     if (this.routeSub) {
       this.routeSub.unsubscribe();
     }
-    if (this.categorySub) { // Unsubscribe from categorySub if it exists
+    if (this.categorySub) {
         this.categorySub.unsubscribe();
     }
   }

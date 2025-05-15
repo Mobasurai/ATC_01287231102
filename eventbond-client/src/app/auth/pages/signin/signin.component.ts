@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink, ActivatedRoute } from '@angular/router'; // Import ActivatedRoute
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../core/services/auth.service'; // Import AuthService
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -14,13 +14,13 @@ import { AuthService } from '../../../core/services/auth.service'; // Import Aut
 export class SigninComponent implements OnInit {
   signinForm!: FormGroup;
   errorMessage: string | null = null;
-  private returnUrl: string = '/events'; // Default return URL
+  private returnUrl: string = '/events';
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService, // Inject AuthService
-    private route: ActivatedRoute // Inject ActivatedRoute
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class SigninComponent implements OnInit {
     console.log('SigninComponent ngOnInit - effective returnUrl:', this.returnUrl);
 
     if (authServiceReturnUrl) {
-        this.authService.redirectUrl = null; // Reset it after use from authService
+        this.authService.redirectUrl = null;
         console.log('SigninComponent ngOnInit - authServiceReturnUrl after reset: null');
     }
   }

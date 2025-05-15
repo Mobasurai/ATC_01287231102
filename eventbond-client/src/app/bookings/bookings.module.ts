@@ -6,13 +6,10 @@ import { BookingListComponent } from './pages/booking-list/booking-list.componen
 
 
 @NgModule({
-  declarations: [
-    // No declarations needed as BookingListComponent is standalone
-  ],
   imports: [
     CommonModule,
     BookingsRoutingModule,
-    BookingListComponent // Import standalone component
+    BookingListComponent
   ]
 })
 export class BookingsModule { }

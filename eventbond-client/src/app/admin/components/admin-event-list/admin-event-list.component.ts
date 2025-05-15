@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Event, EventService } from '../../../core/services/event.service';
-import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common'; // Import CommonModule, DatePipe, CurrencyPipe
+import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-event-list',
-  standalone: true, // Added standalone: true
-  imports: [CommonModule, DatePipe, CurrencyPipe], // Added imports for CommonModule, DatePipe, CurrencyPipe
+  standalone: true,
+  imports: [CommonModule, DatePipe, CurrencyPipe],
   templateUrl: './admin-event-list.component.html',
   styleUrls: ['./admin-event-list.component.css']
 })
@@ -38,10 +38,6 @@ export class AdminEventListComponent implements OnInit {
   deleteEvent(eventId: string): void {
     if (confirm('Are you sure you want to delete this event?')) {
       this.eventService.deleteEvent(eventId).subscribe({
-        next: () => {
-          // Refresh the list or provide feedback
-          // For now, we rely on the BehaviorSubject in the service to update the view
-        },
         error: (err) => {
           this.error = 'Failed to delete event.';
           console.error(err);

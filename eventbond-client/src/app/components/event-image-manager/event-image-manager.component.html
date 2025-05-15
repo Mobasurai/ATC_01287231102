@@ -1,12 +1,10 @@
 <div class="image-manager-container">
   <h3>Manage Event Images (Event ID: {{ eventId }})</h3>
 
-  <!-- Error Message Display -->
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
 
-  <!-- Image Upload Section -->
   <div class="upload-section">
     <h4>Upload New Image</h4>
     <input type="file" (change)="onFileSelected($event)" #fileInput accept="image/*">
@@ -19,7 +17,6 @@
     </button>
   </div>
 
-  <!-- Image Display Section -->
   <div class="display-section">
     <h4>Current Images</h4>
     <button (click)="loadEventImages()" [disabled]="loadingImages || !eventId">
@@ -32,7 +29,6 @@
         <img [src]="eventImageService.getImageUrl(image.id)" [alt]="'Event Image ' + image.id" class="thumbnail">
         <p>ID: {{ image.id }}</p>
         <p>Primary: <span [class.text-success]="image.isPrimary" [class.text-muted]="!image.isPrimary">{{ image.isPrimary ? 'Yes' : 'No' }}</span></p>
-        <!-- Add delete button or other actions here if needed -->
       </div>
     </div>
     <ng-template #noImages>

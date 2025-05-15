@@ -7,9 +7,8 @@ const routes: Routes = [
   {
     path: '',
     component: BookingListComponent,
-    canActivate: [authGuard] // Protect the bookings list
+    canActivate: [authGuard]
   }
-  // Add more booking-related routes here if needed (e.g., booking detail)
 ];
 
 @NgModule({

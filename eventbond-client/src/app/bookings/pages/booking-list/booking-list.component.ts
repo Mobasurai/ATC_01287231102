@@ -1,33 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Booking, BookingService } from '../../../core/services/booking.service'; // Corrected path
-import { AuthService } from '../../../core/services/auth.service'; // Corrected path
-import { Event } from '../../../core/services/event.service'; // Import Event interface
+import { Booking, BookingService } from '../../../core/services/booking.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { Event } from '../../../core/services/event.service';
 import { Observable } from 'rxjs';
-import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common'; // Removed CurrencyPipe
+import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-booking-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, DatePipe, TitleCasePipe], // Removed CurrencyPipe
+  imports: [CommonModule, RouterLink, DatePipe, TitleCasePipe],
   templateUrl: './booking-list.component.html',
   styleUrls: ['./booking-list.component.css']
 })
 export class BookingListComponent implements OnInit {
   bookings$: Observable<Booking[]> | undefined;
-  // For user feedback, e.g., after cancelling a booking
   feedbackMessage: string | null = null;
   feedbackType: 'success' | 'error' | null = null;
 
   constructor(
     private bookingService: BookingService,
-    public authService: AuthService // Made public for potential use in template, though not strictly needed here
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.bookings$ = this.bookingService.userBookings$;
-    // Optionally, subscribe to see console logs or for debugging
-    // this.bookings$.subscribe(bookings => console.log('Bookings in component:', bookings));
   }
 
   getEventImageUrl(event: Event | undefined): string {
@@ -36,26 +33,23 @@ export class BookingListComponent implements OnInit {
       if (primaryImage?.imagePath) {
         return primaryImage.imagePath;
       }
-      // Ensure event.images[0] exists and has imagePath before accessing
       if (event.images[0]?.imagePath) {
-        return event.images[0].imagePath; // Fallback to the first image
+        return event.images[0].imagePath;
       }
     }
     if (event?.imageUrl) {
-      return event.imageUrl; // Fallback to the main imageUrl
+      return event.imageUrl;
     }
-    return 'https://via.placeholder.com/300x200.png?text=Event+Image'; // Default placeholder
+    return '';
   }
 
   cancelBooking(bookingId: string): void {
     if (!bookingId) return;
 
-    // Optimistic UI update can be done here if desired, or wait for service confirmation
     this.bookingService.cancelBooking(bookingId).subscribe({
       next: (response) => {
         if (response.success) {
           this.showFeedback('Booking cancelled successfully.', 'success');
-          // The bookings$ observable should update automatically from the service
         } else {
           this.showFeedback(response.message || 'Failed to cancel booking.', 'error');
         }

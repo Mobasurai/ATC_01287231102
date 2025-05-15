@@ -17,6 +17,6 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
-  { path: '', redirectTo: '/events', pathMatch: 'full' }, // Default route
-  { path: '**', redirectTo: '/events' } // Wildcard route for 404, redirect to events or a dedicated NotFoundComponent
+  { path: '', redirectTo: '/events', pathMatch: 'full' },
+  { path: '**', redirectTo: '/events' }
 ];
