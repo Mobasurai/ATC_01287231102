@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Request,
+  Query,
 } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { RolesGuard } from '../auth/guards/roles.guard';
@@ -24,10 +25,12 @@ export class EventsController {
   @Get('/getEvents')
   @Roles('admin', 'user')
   async getEvents(
-    @Body('page') page: number = 1,
-    @Body('limit') limit: number = 10,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
   ) {
-    return this.eventsService.findAllPaginated(page, limit);
+    const numPage = Number(page) || 1;
+    const numLimit = Number(limit) || 10;
+    return this.eventsService.findAllPaginated(numPage, numLimit);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -66,11 +69,14 @@ export class EventsController {
   @Get('/searchEvents')
   @Roles('admin', 'user')
   async searchEvents(
-    @Body('searchText') searchText?: string,
-    @Body('categoryId') categoryId?: number,
-    @Body('page') page: number = 1,
-    @Body('limit') limit: number = 10,
+    @Query('searchText') searchText?: string,
+    @Query('categoryId') categoryId?: number,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
   ) {
-    return this.eventsService.searchEvents(searchText, categoryId, page, limit);
+    const numPage = Number(page) || 1;
+    const numLimit = Number(limit) || 10;
+    const numCategoryId = categoryId ? Number(categoryId) : undefined;
+    return this.eventsService.searchEvents(searchText, numCategoryId, numPage, numLimit);
   }
 }

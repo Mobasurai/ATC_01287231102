@@ -12,9 +12,15 @@ import { EventsModule } from './events/events.module';
 import { CategoriesModule } from './categories/categories.module';
 import { BookingsModule } from './bookings/bookings.module';
 import { EventImageModule } from './events/event-image.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'eventbond-uploads'),
+      serveRoot: '/eventbond-uploads',
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_HOST,

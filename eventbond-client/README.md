@@ -1,59 +1,59 @@
-# EventbondClient
+# EventBond Frontend (eventbond-client)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+This is the frontend for the **EventBond** event booking system, built with React, TypeScript, Vite, Tailwind CSS, and i18next for multi-language support.
 
-## Development server
+## Features
+- Browse and search for upcoming events
+- Book events and manage your bookings
+- View event details, images, and categories
+- Multi-language support (English & Arabic)
+- Admin panel for managing events, users, and bookings
 
-To start a local development server, run:
+## Getting Started
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 1. Install dependencies
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 2. Configure API URL
+
+Set the backend API URL in your `.env` file or `vite.config.ts`:
+
+```
+VITE_API_URL=http://localhost:3000/api
+```
+
+### 3. Run the app in development mode
 
 ```bash
-ng generate --help
+npm run dev
 ```
 
-## Building
+The app will be available at [http://localhost:5173](http://localhost:5173) by default.
 
-To build the project run:
+### 4. Build for production
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 5. Preview the production build
 
 ```bash
-ng test
+npm run preview
 ```
 
-## Running end-to-end tests
+## Scripts
+- `npm run dev` — Start the app in development mode
+- `npm run build` — Build the app for production
+- `npm run preview` — Preview the production build
+- `npm run lint` — Run ESLint on the codebase
 
-For end-to-end (e2e) testing, run:
+## Environment Variables
+- `VITE_API_URL` — The base URL for the backend API (e.g., `http://localhost:3000/api`)
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Notes
+- For full-stack setup (backend, database, admin features), see the main project [README](../README.md).
+- Make sure the backend API is running and accessible at the URL you set in `VITE_API_URL`.

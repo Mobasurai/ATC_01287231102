@@ -12,14 +12,12 @@ import { BookingsService } from './bookings.service';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/roles.decorator';
-import { UsersService } from '../users/users.service';
 import { EventsService } from '../events/events.service';
 
 @Controller('bookings')
 export class BookingsController {
   constructor(
     private readonly bookingsService: BookingsService,
-    private readonly usersService: UsersService,
     private readonly eventsService: EventsService,
   ) {}
 

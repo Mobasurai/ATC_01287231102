@@ -1,0 +1,302 @@
+{
+  "greeting": "مرحباً",
+  "navbar": {
+    "brand": "إيفينت بوند",
+    "events": "الفعاليات",
+    "admin": "الإدارة",
+    "myBookings": "حجوزاتي",
+    "greeting": "مرحباً، {{name}}",
+    "logout": "تسجيل الخروج",
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب"
+  },
+  "eventsListPage": {
+    "title": "الفعاليات القادمة",
+    "createNewEventButton": "إنشاء فعالية جديدة",
+    "search": {
+      "label": "البحث باسم الفعالية",
+      "placeholder": "أدخل اسم الفعالية..."
+    },
+    "categoryFilter": {
+      "label": "التصنيف حسب الفئة",
+      "allCategories": "جميع الفئات"
+    },
+    "errors": {
+      "fetchEvents": "فشل في جلب الفعاليات. يرجى المحاولة مرة أخرى لاحقاً.",
+      "oops": "عفواً!"
+    },
+    "noEvents": {
+      "title": "لم يتم العثور على فعاليات",
+      "message": "لا توجد فعاليات تطابق بحثك الحالي. حاول تعديل البحث أو الفئة.",
+      "createFirstEventButton": "إنشاء الفعالية الأولى"
+    },
+    "loadMoreButton": "تحميل المزيد من الفعاليات",
+    "endOfList": "لقد وصلت إلى نهاية قائمة الفعاليات."
+  },
+  "eventForm": {
+    "titleCreate": "إنشاء فعالية جديدة",
+    "titleEdit": "تعديل الفعالية",
+    "noImagePlaceholder": "لا توجد معاينة للصورة",
+    "imagesSectionTitle": "صور الفعالية",
+    "currentImages": "الصور الحالية",
+    "altExistingImage": "صورة الفعالية الحالية",
+    "altNewImage": "معاينة الصورة الجديدة",
+    "setAsPrimary": "تعيين كصورة أساسية",
+    "primaryImage": "أساسية",
+    "deleteImage": "حذف",
+    "removeImage": "إزالة",
+    "newImages": "صور جديدة للتحميل",
+    "uploadingImages": "جاري تحميل الصور...",
+    "imageUploadHint": "يمكنك تحميل عدة صور. الصورة الأولى التي تختارها ستكون الأساسية ما لم يتم تغييرها.",
+    "labels": {
+      "title": "عنوان الفعالية",
+      "description": "الوصف",
+      "startDate": "تاريخ ووقت البدء",
+      "endDate": "تاريخ ووقت الانتهاء",
+      "venue": "المكان / الموقع",
+      "price": "السعر",
+      "category": "الفئة",
+      "addImage": "إضافة صورة (صور)",
+      "newCategoryName": "اسم الفئة الجديدة"
+    },
+    "placeholders": {
+      "price": "مثال: 150 أو 0 للمجاني",
+      "newCategoryName": "أدخل اسم فئة فريد"
+    },
+    "selectCategory": "اختر فئة...",
+    "buttons": {
+      "addNewCategory": "إضافة جديد",
+      "cancel": "إلغاء",
+      "createCategory": "إنشاء فئة",
+      "creatingCategory": "جاري الإنشاء",
+      "goBack": "العودة",
+      "submitting": "جاري الإرسال",
+      "updateEvent": "حفظ التغييرات",
+      "createEvent": "إنشاء فعالية"
+    },
+    "confirmations": {
+      "deleteImage": "هل أنت متأكد أنك تريد حذف هذه الصورة؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "errors": {
+      "loadCategories": "لم نتمكن من تحميل الفئات. يرجى تحديث الصفحة أو المحاولة مرة أخرى لاحقًا.",
+      "deleteImage": "فشل حذف الصورة. يرجى المحاولة مرة أخرى.",
+      "setPrimaryNoEvent": "لا يمكن تعيين الصورة الأساسية. معرّف الفعالية مفقود.",
+      "setPrimary": "فشل تعيين الصورة الأساسية. يرجى المحاولة مرة أخرى.",
+      "categoryNameEmpty": "لا يمكن أن يكون اسم الفئة فارغًا.",
+      "categoryExists": "الفئة \"{{name}}\" موجودة بالفعل. يرجى اختيار اسم مختلف.",
+      "createCategory": "فشل إنشاء الفئة. يرجى التحقق من الاسم والمحاولة مرة أخرى.",
+      "categoryExistsBackend": "الفئة \"{{name}}\" موجودة بالفعل (تم التحقق من الخادم). يرجى اختيار اسم مختلف.",
+      "fillAllFields": "يرجى ملء جميع الحقول المطلوبة: العنوان، الوصف، تاريخ البدء، تاريخ الانتهاء، المكان، السعر، والفئة.",
+      "invalidStartDate": "تاريخ البدء المقدم غير صالح.",
+      "invalidEndDate": "تاريخ الانتهاء المقدم غير صالح.",
+      "endDateBeforeStartDate": "يجب أن يكون تاريخ ووقت الانتهاء بعد تاريخ ووقت البدء.",
+      "imageUpload": "حدث خطأ أثناء تحميل صورة واحدة أو أكثر.",
+      "formSubmitWithImageIssues": "تم حفظ تفاصيل الفعالية، ولكن حدثت مشكلة في تحميل الصور. يمكنك إدارة الصور عن طريق تعديل الفعالية.",
+      "submitForm": "حدث خطأ أثناء إرسال النموذج. يرجى المحاولة مرة أخرى."
+    }
+  },
+  "adminDashboard": {
+    "eventPlaceholder": "فعالية",
+    "loadingEvents": "جاري تحميل الفعاليات...",
+    "errorTitle": "خطأ",
+    "pleaseSignIn": "يرجى تسجيل الدخول",
+    "manageEventsTitle": "إدارة الفعاليات",
+    "viewEventLinkTitle": "عرض الفعالية: {{title}}",
+    "buttons": {
+      "createNewEvent": "إنشاء فعالية جديدة",
+      "createFirstEvent": "إنشاء الفعالية الأولى",
+      "edit": "تعديل",
+      "editEventTitle": "تعديل الفعالية",
+      "delete": "حذف",
+      "deleteEventTitle": "حذف الفعالية",
+      "deleting": "جاري الحذف..."
+    },
+    "table": {
+      "image": "الصورة",
+      "title": "العنوان",
+      "date": "التاريخ",
+      "venue": "المكان",
+      "price": "السعر",
+      "actions": "الإجراءات"
+    },
+    "noEvents": {
+      "title": "لم يتم العثور على فعاليات",
+      "message": "لا توجد فعاليات لإدارتها حتى الآن. ابدأ بإنشاء واحدة."
+    },
+    "confirmations": {
+      "deleteEvent": "هل أنت متأكد أنك تريد حذف هذه الفعالية بشكل دائم؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "feedback": {
+      "deleteSuccess": "تم حذف الفعالية بنجاح."
+    },
+    "errors": {
+      "notAdmin": "يجب أن تكون مسجلاً للدخول كمسؤول لعرض هذه الصفحة.",
+      "fetchEventsConsole": "فشل جلب الفعاليات للمسؤول:",
+      "fetchEventsUser": "فشل في جلب الفعاليات. يرجى المحاولة مرة أخرى لاحقاً.",
+      "deleteEvent": "فشل حذف الفعالية. يرجى المحاولة مرة أخرى."
+    }
+  },
+  "eventCard": {
+    "noImagePlaceholder": "لا توجد صورة",
+    "labels": {
+      "dates": "التواريخ",
+      "venue": "المكان"
+    },
+    "noDescription": "لا يوجد وصف متاح.",
+    "viewDetailsButton": "عرض التفاصيل"
+  },
+  "loading": "جاري التحميل...",
+  "free": "مجاني",
+  "currency": {
+    "egp": "جم"
+  },
+  "bookings": {
+    "title": "حجوزاتي",
+    "placeholderImage": "صورة الفعالية",
+    "loading": "جاري تحميل الحجوزات...",
+    "errors": {
+      "fetchBookings": "فشل في جلب الحجوزات. يرجى تحديث الصفحة أو المحاولة مرة أخرى.",
+      "fetchTitle": "خطأ في جلب الحجوزات",
+      "cancelBooking": "فشل في إلغاء الحجز. يرجى المحاولة مرة أخرى."
+    },
+    "feedback": {
+      "cancelSuccess": "تم إلغاء الحجز بنجاح."
+    },
+    "confirmations": {
+      "cancelBooking": "هل أنت متأكد أنك تريد إلغاء هذا الحجز؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "noBookings": {
+      "title": "لا توجد حجوزات",
+      "message": "لم تقم بحجز أي فعاليات بعد. لماذا لا تستكشف بعض الفعاليات القادمة الرائعة؟",
+      "exploreButton": "استكشف الفعاليات الآن"
+    },
+    "labels": {
+      "eventDate": "تاريخ الفعالية",
+      "venue": "المكان",
+      "bookedOn": "تم الحجز في"
+    },
+    "buttons": {
+      "cancel": "إلغاء الحجز",
+      "cancelling": "جاري الإلغاء..."
+    }
+  },
+  "adminUsers": {
+    "title": "إدارة المستخدمين",
+    "loading": "جاري تحميل المستخدمين...",
+    "errors": {
+      "fetchUsers": "فشل في جلب المستخدمين.",
+      "deleteUser": "فشل في حذف المستخدم.",
+      "updateRole": "فشل في تحديث دور المستخدم."
+    },
+    "feedback": {
+      "deleteSuccess": "تم حذف المستخدم بنجاح.",
+      "updateRoleSuccess": "تم تحديث دور المستخدم بنجاح."
+    },
+    "confirmations": {
+      "deleteUser": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "table": {
+      "id": "المعرف",
+      "username": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "joined": "تاريخ الانضمام",
+      "actions": "الإجراءات",
+      "na": "غير متوفر"
+    },
+    "roles": {
+      "user": "مستخدم",
+      "admin": "مسؤول"
+    },
+    "buttons": {
+      "editRole": "تعديل الدور",
+      "save": "حفظ",
+      "delete": "حذف"
+    }
+  },
+  "adminBookings": {
+    "title": "إدارة جميع الحجوزات",
+    "loading": "جاري تحميل الحجوزات...",
+    "errors": {
+      "fetchBookings": "فشل في جلب الحجوزات.",
+      "deleteBooking": "فشل في حذف الحجز."
+    },
+    "feedback": {
+      "deleteSuccess": "تم حذف الحجز بنجاح."
+    },
+    "confirmations": {
+      "deleteBooking": "هل أنت متأكد أنك تريد حذف هذا الحجز؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "noBookings": "لا توجد حجوزات.",
+    "table": {
+      "bookingId": "معرف الحجز",
+      "eventTitle": "عنوان الفعالية",
+      "userId": "محجوز بواسطة (معرف المستخدم)",
+      "username": "محجوز بواسطة (اسم المستخدم)",
+      "bookingDate": "تاريخ الحجز",
+      "actions": "الإجراءات",
+      "na": "غير متوفر"
+    },
+    "buttons": {
+      "delete": "حذف"
+    }
+  },
+  "adminSidebar": {
+    "panel": "لوحة الإدارة",
+    "links": {
+      "events": "إدارة الفعاليات",
+      "users": "إدارة المستخدمين",
+      "bookings": "إدارة الحجوزات"
+    }
+  },
+  "eventDetail": {
+    "detailsTitle": "تفاصيل الفعالية",
+    "aboutTitle": "عن هذه الفعالية",
+    "details": {
+      "price": "السعر",
+      "category": "الفئة",
+      "organizer": "المنظم",
+      "venue": "المكان"
+    },
+    "notFound": {
+      "title": "الفعالية غير موجودة",
+      "message": "عذراً، لم نتمكن من العثور على الفعالية التي تبحث عنها."
+    },
+    "imageCarousel": {
+      "altText": "صورة الفعالية {{current}} من {{total}} لـ {{title}}",
+      "previous": "السابق",
+      "next": "التالي",
+      "goToSlide": "اذهب إلى الشريحة {{slideNumber}}",
+      "imageCount": "صورة {{current}} من {{total}}",
+      "loadingImage": "جاري تحميل الصورة..."
+    },
+    "dateTime": {
+      "date": "التاريخ",
+      "time": "الوقت",
+      "from": "من",
+      "to": "إلى",
+      "at": "في"
+    },
+    "loading": "جاري تحميل تفاصيل الفعالية...",
+    "errorTitle": "خطأ",
+    "buttons": {
+      "backToEvents": "العودة إلى الفعاليات",
+      "exploreEvents": "استكشاف فعاليات أخرى",
+      "bookNow": "احجز هذه الفعالية",
+      "bookingProcessing": "جاري معالجة الحجز...",
+      "alreadyBooked": "تم الحجز مسبقاً",
+      "loginToBook": "سجّل الدخول للحجز"
+    },
+    "booking": {
+      "success": "تم حجز الفعالية بنجاح! يمكنك عرض تفاصيل الحجز في 'حجوزاتي'.",
+      "error": "فشل في حجز الفعالية. قد تكون محجوزة بالفعل أو لم تعد متاحة أو ربما قمت بحجزها مسبقاً."
+    },
+    "noDescription": "لا يوجد وصف إضافي متاح.",
+    "bannerPlaceholder": "لافتة الفعالية",
+    "errors": {
+      "fetchBookingsConsole": "فشل في جلب حجوزات المستخدم:",
+      "fetchEventConsole": "فشل في جلب تفاصيل الفعالية:",
+      "fetchEventUser": "فشل في جلب تفاصيل الفعالية. قد لا تكون الفعالية موجودة أو هناك مشكلة في الخادم."
+    }
+  }
+} 

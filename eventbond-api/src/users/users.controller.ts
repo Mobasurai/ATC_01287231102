@@ -6,10 +6,12 @@ import {
   Param,
   Patch,
   Post,
+  Request,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user-dto';
 import { User } from './users.entity';
+import { UpdateUserDto } from './dto/update-user-dto';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from '../auth/roles.decorator';
@@ -44,8 +46,18 @@ export class UsersController {
   @Patch('/updateUser/:id')
   @UseGuards(AuthGuard('jwt'), OwnerOrAdmin)
   @Roles('admin', 'user')
-  async updateUser(@Param('id') id: number, @Body() user: User) {
-    return await this.usersService.updateUser(id, user);
+  async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+    return await this.usersService.updateUser(id, updateUserDto);
+  }
+
+  @Patch('/admin/update/:id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin')
+  async updateUserByAdmin(
+    @Param('id') id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return await this.usersService.updateUserByAdmin(id, updateUserDto);
   }
 
   @Delete('/deleteUser/:id')
@@ -53,5 +65,12 @@ export class UsersController {
   @Roles('admin', 'user')
   async deleteUser(@Param('id') id: number) {
     return await this.usersService.deleteUser(id);
+  }
+
+  @Delete('/admin/delete/:id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin')
+  async deleteUserByAdmin(@Param('id') id: number, @Request() req) {
+    return await this.usersService.deleteUserByAdmin(id, req.user.id);
   }
 }

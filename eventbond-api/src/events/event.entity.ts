@@ -6,9 +6,11 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from '../users/users.entity';
 import { Category } from '../categories/categories.entity';
+import { EventImage } from './event-image.entity';
 import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 @Entity()
@@ -63,6 +65,9 @@ export class Event {
   @IsNumber()
   @IsNotEmpty()
   price: number;
+
+  @OneToMany(() => EventImage, (image) => image.event, { cascade: true, eager: false })
+  images: EventImage[];
 
   @CreateDateColumn()
   createdAt: Date;

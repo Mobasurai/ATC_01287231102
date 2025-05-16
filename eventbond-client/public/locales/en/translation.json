@@ -1,0 +1,302 @@
+{
+  "greeting": "Hello",
+  "navbar": {
+    "brand": "EventBond",
+    "events": "Events",
+    "admin": "Admin",
+    "myBookings": "My Bookings",
+    "greeting": "Hi, {{name}}",
+    "logout": "Logout",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "eventsListPage": {
+    "title": "Upcoming Events",
+    "createNewEventButton": "Create New Event",
+    "search": {
+      "label": "Search by Event Name",
+      "placeholder": "Enter event name..."
+    },
+    "categoryFilter": {
+      "label": "Filter by Category",
+      "allCategories": "All Categories"
+    },
+    "errors": {
+      "fetchEvents": "Failed to fetch events. Please try again later.",
+      "oops": "Oops!"
+    },
+    "noEvents": {
+      "title": "No events found",
+      "message": "No events match your current filters. Try adjusting your search or category.",
+      "createFirstEventButton": "Create First Event"
+    },
+    "loadMoreButton": "Load More Events",
+    "endOfList": "You've reached the end of the events list."
+  },
+  "eventForm": {
+    "titleCreate": "Create New Event",
+    "titleEdit": "Edit Event",
+    "noImagePlaceholder": "No Image Preview",
+    "imagesSectionTitle": "Event Images",
+    "currentImages": "Current Images",
+    "altExistingImage": "Existing event image",
+    "altNewImage": "New image preview",
+    "setAsPrimary": "Set as Primary",
+    "primaryImage": "Primary",
+    "deleteImage": "Delete",
+    "removeImage": "Remove",
+    "newImages": "New Images to Upload",
+    "uploadingImages": "Uploading images...",
+    "imageUploadHint": "You can upload multiple images. The first image selected will be the primary unless changed.",
+    "labels": {
+      "title": "Event Title",
+      "description": "Description",
+      "startDate": "Start Date & Time",
+      "endDate": "End Date & Time",
+      "venue": "Venue / Location",
+      "price": "Price",
+      "category": "Category",
+      "addImage": "Add Image(s)",
+      "newCategoryName": "New Category Name"
+    },
+    "placeholders": {
+      "price": "e.g., 150 or 0 for free",
+      "newCategoryName": "Enter unique category name"
+    },
+    "selectCategory": "Select a category...",
+    "buttons": {
+      "addNewCategory": "Add New",
+      "cancel": "Cancel",
+      "createCategory": "Create Category",
+      "creatingCategory": "Creating",
+      "goBack": "Go Back",
+      "submitting": "Submitting",
+      "updateEvent": "Save Changes",
+      "createEvent": "Create Event"
+    },
+    "confirmations": {
+      "deleteImage": "Are you sure you want to delete this image? This action cannot be undone."
+    },
+    "errors": {
+      "loadCategories": "Could not load categories. Please refresh the page or try again later.",
+      "deleteImage": "Failed to delete image. Please try again.",
+      "setPrimaryNoEvent": "Cannot set primary image. Event ID is missing.",
+      "setPrimary": "Failed to set primary image. Please try again.",
+      "categoryNameEmpty": "Category name cannot be empty.",
+      "categoryExists": "Category \"{{name}}\" already exists. Please choose a different name.",
+      "createCategory": "Failed to create category. Please check the name and try again.",
+      "categoryExistsBackend": "Category \"{{name}}\" already exists (checked with server). Please choose a different name.",
+      "fillAllFields": "Please fill in all required fields: Title, Description, Start Date, End Date, Venue, Price, and Category.",
+      "invalidStartDate": "The start date provided is not valid.",
+      "invalidEndDate": "The end date provided is not valid.",
+      "endDateBeforeStartDate": "End date and time must be after the start date and time.",
+      "imageUpload": "An error occurred while uploading one or more images.",
+      "formSubmitWithImageIssues": "Event details saved, but there was an issue with image uploads. You can manage images by editing the event.",
+      "submitForm": "An error occurred while submitting the form. Please try again."
+    }
+  },
+  "adminDashboard": {
+    "eventPlaceholder": "Event",
+    "loadingEvents": "Loading events...",
+    "errorTitle": "Error",
+    "pleaseSignIn": "Please Sign In",
+    "manageEventsTitle": "Manage Events",
+    "viewEventLinkTitle": "View event: {{title}}",
+    "buttons": {
+      "createNewEvent": "Create New Event",
+      "createFirstEvent": "Create First Event",
+      "edit": "Edit",
+      "editEventTitle": "Edit Event",
+      "delete": "Delete",
+      "deleteEventTitle": "Delete Event",
+      "deleting": "Deleting..."
+    },
+    "table": {
+      "image": "Image",
+      "title": "Title",
+      "date": "Date",
+      "venue": "Venue",
+      "price": "Price",
+      "actions": "Actions"
+    },
+    "noEvents": {
+      "title": "No Events Found",
+      "message": "There are no events to manage yet. Get started by creating one."
+    },
+    "confirmations": {
+      "deleteEvent": "Are you sure you want to permanently delete this event? This action cannot be undone."
+    },
+    "feedback": {
+      "deleteSuccess": "Event deleted successfully."
+    },
+    "errors": {
+      "notAdmin": "You must be logged in as an admin to view this page.",
+      "fetchEventsConsole": "Failed to fetch events for admin:",
+      "fetchEventsUser": "Failed to fetch events. Please try again later.",
+      "deleteEvent": "Failed to delete event. Please try again."
+    }
+  },
+  "eventCard": {
+    "noImagePlaceholder": "No Image",
+    "labels": {
+      "dates": "Dates",
+      "venue": "Venue"
+    },
+    "noDescription": "No description available.",
+    "viewDetailsButton": "View Details"
+  },
+  "loading": "Loading...",
+  "free": "Free",
+  "currency": {
+    "egp": "EGP"
+  },
+  "bookings": {
+    "title": "My Bookings",
+    "placeholderImage": "Event Image",
+    "loading": "Loading your bookings...",
+    "errors": {
+      "fetchBookings": "Failed to fetch your bookings. Please try refreshing the page.",
+      "fetchTitle": "Error Fetching Bookings",
+      "cancelBooking": "Failed to cancel booking. Please try again."
+    },
+    "feedback": {
+      "cancelSuccess": "Booking cancelled successfully."
+    },
+    "confirmations": {
+      "cancelBooking": "Are you sure you want to cancel this booking? This action cannot be undone."
+    },
+    "noBookings": {
+      "title": "No Bookings Found",
+      "message": "You haven't booked any events yet. Why not explore some amazing upcoming events?",
+      "exploreButton": "Explore Events Now"
+    },
+    "labels": {
+      "eventDate": "Event Date",
+      "venue": "Venue",
+      "bookedOn": "Booked on"
+    },
+    "buttons": {
+      "cancel": "Cancel Booking",
+      "cancelling": "Cancelling..."
+    }
+  },
+  "adminUsers": {
+    "title": "Manage Users",
+    "loading": "Loading users...",
+    "errors": {
+      "fetchUsers": "Failed to fetch users.",
+      "deleteUser": "Failed to delete user.",
+      "updateRole": "Failed to update user role."
+    },
+    "feedback": {
+      "deleteSuccess": "User deleted successfully.",
+      "updateRoleSuccess": "User role updated successfully."
+    },
+    "confirmations": {
+      "deleteUser": "Are you sure you want to delete this user? This action cannot be undone."
+    },
+    "table": {
+      "id": "ID",
+      "username": "Username",
+      "email": "Email",
+      "role": "Role",
+      "joined": "Joined",
+      "actions": "Actions",
+      "na": "N/A"
+    },
+    "roles": {
+      "user": "User",
+      "admin": "Admin"
+    },
+    "buttons": {
+      "editRole": "Edit Role",
+      "save": "Save",
+      "delete": "Delete"
+    }
+  },
+  "adminBookings": {
+    "title": "Manage All Bookings",
+    "loading": "Loading bookings...",
+    "errors": {
+      "fetchBookings": "Failed to fetch bookings.",
+      "deleteBooking": "Failed to delete booking."
+    },
+    "feedback": {
+      "deleteSuccess": "Booking deleted successfully."
+    },
+    "confirmations": {
+      "deleteBooking": "Are you sure you want to delete this booking? This action cannot be undone."
+    },
+    "noBookings": "No bookings found.",
+    "table": {
+      "bookingId": "Booking ID",
+      "eventTitle": "Event Title",
+      "userId": "Booked By (User ID)",
+      "username": "Booked By (Username)",
+      "bookingDate": "Booking Date",
+      "actions": "Actions",
+      "na": "N/A"
+    },
+    "buttons": {
+      "delete": "Delete"
+    }
+  },
+  "adminSidebar": {
+    "panel": "Admin Panel",
+    "links": {
+      "events": "Manage Events",
+      "users": "Manage Users",
+      "bookings": "Manage Bookings"
+    }
+  },
+  "eventDetail": {
+    "detailsTitle": "Event Details",
+    "aboutTitle": "About This Event",
+    "details": {
+      "price": "Price",
+      "category": "Category",
+      "organizer": "Organizer",
+      "venue": "Venue"
+    },
+    "notFound": {
+      "title": "Event Not Found",
+      "message": "Sorry, we couldn't find the event you're looking for."
+    },
+    "imageCarousel": {
+      "altText": "Event image {{current}} of {{total}} for {{title}}",
+      "previous": "Previous",
+      "next": "Next",
+      "goToSlide": "Go to slide {{slideNumber}}",
+      "imageCount": "Image {{current}} of {{total}}",
+      "loadingImage": "Loading image..."
+    },
+    "dateTime": {
+      "date": "Date",
+      "time": "Time",
+      "from": "From",
+      "to": "To",
+      "at": "at"
+    },
+    "loading": "Loading event details...",
+    "errorTitle": "Error",
+    "buttons": {
+      "backToEvents": "Back to Events",
+      "exploreEvents": "Explore Other Events",
+      "bookNow": "Book This Event",
+      "bookingProcessing": "Processing Booking...",
+      "alreadyBooked": "Already Booked",
+      "loginToBook": "Login to Book"
+    },
+    "booking": {
+      "success": "Event booked successfully! You can view your booking details in 'My Bookings'.",
+      "error": "Failed to book event. It might already be booked, no longer available, or you may have already booked this event."
+    },
+    "noDescription": "No additional description available.",
+    "bannerPlaceholder": "Event Banner",
+    "errors": {
+      "fetchBookingsConsole": "Failed to fetch user bookings:",
+      "fetchEventConsole": "Failed to fetch event details:",
+      "fetchEventUser": "Failed to fetch event details. The event might not exist or there was a server issue."
+    }
+  }
+} 
