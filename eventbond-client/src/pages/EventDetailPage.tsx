@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getEventById } from '../services/eventService';
-import { getUserBookings } from '../services/bookingsService';
-import type { Event as EventType } from '../types';
 import { useAuth } from '../hooks/useAuth';
+import { getEventById } from '../services/eventService';
+import { getUserBookings, createBooking } from '../services/bookingsService'; // Added createBooking
+import type { Event as EventType } from '../types';
 
 
 const CalendarIcon = () => (
@@ -125,6 +125,7 @@ const EventDetailPage: React.FC = () => {
       setBookingError(null);
       setIsBooking(true);
       try {
+        await createBooking(event.id);
         setBookingMessage(t('eventDetail.booking.success'));
         setIsAlreadyBooked(true);
       } catch (err: any) {
