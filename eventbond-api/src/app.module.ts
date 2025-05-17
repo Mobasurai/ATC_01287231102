@@ -29,6 +29,7 @@ import { join } from 'path';
       password: process.env.DATABASE_PASSWORD as string,
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
+      ssl: process.env.DATABASE_SSL === 'true',
       synchronize: true,
     }),
     TypeOrmModule.forFeature([User]),
