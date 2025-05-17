@@ -67,8 +67,9 @@ cd EventBond
 
 ```bash
 cd eventbond-api
-cp .env.example .env   # Create your .env file if needed
 ```
+
+Make a .env file in the root directory of `eventbond-api`
 
 Edit your `.env` file to match your PostgreSQL credentials:
 
