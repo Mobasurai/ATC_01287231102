@@ -67,18 +67,23 @@ cd EventBond
 
 ```bash
 cd eventbond-api
-cp .env.example .env   # Create your .env file if needed
 ```
+
+Make a .env file in the root directory of `eventbond-api`
 
 Edit your `.env` file to match your PostgreSQL credentials:
 
 ```
-DB_HOST=localhost
-DB_PORT=5432
-DB_USERNAME=your_db_user
-DB_PASSWORD=your_db_password
-DB_DATABASE=eventbond_db
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USERNAME=your_db_user
+DATABASE_PASSWORD=your_db_password
+DATABASE_NAME=eventbond
+DATABASE_SSL=true # enable SSL connection or not
 JWT_SECRET=your_jwt_secret
+ADMIN_EMAIL=admin@example.com
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=Very12Str@ng75Pa$$word
 ```
 
 **Install dependencies:**
