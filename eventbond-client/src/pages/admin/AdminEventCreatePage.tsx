@@ -11,7 +11,7 @@ const AdminEventCreatePage: React.FC = () => {
 
   const handleSubmit = async (eventData: CreateEventPayload) => {
     if (!user) throw new Error('No authenticated user');
-    const payload = { ...eventData, creatorId: user.id };
+    const payload = { ...eventData };
     const newEvent = await createEvent(payload);
     navigate('/admin/events', { state: { message: 'Event created successfully!' } });
     return newEvent;
