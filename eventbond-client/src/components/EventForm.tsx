@@ -240,7 +240,7 @@ const EventForm: React.FC<EventFormProps> = ({ initialEvent, onSubmit, isEditMod
         setIsSubmitting(false);
         return;
       }
-      eventPayload = { ...eventPayload, creatorId: user.id };
+      eventPayload = { ...eventPayload };
     }
 
     let submittedEvent: EventType | null = null;
