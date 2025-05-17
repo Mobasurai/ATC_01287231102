@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, ForbiddenException, OnModuleInit, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './users.entity';
 import { Repository } from 'typeorm';
@@ -12,6 +12,38 @@ export class UsersService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
+
+  private readonly logger = new Logger(UsersService.name);
+
+  async createAdminFromEnv(): Promise<void> {
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminUsername = process.env.ADMIN_USERNAME;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    if (!adminEmail || !adminUsername || !adminPassword) {
+      this.logger.warn('Admin credentials not found in .env file. Skipping admin user creation.');
+      return;
+    }
+
+    const existingAdmin = await this.userRepository.findOneBy({ email: adminEmail });
+    if (existingAdmin) {
+      this.logger.log('Admin user already exists.');
+      return;
+    }
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(adminPassword, saltRounds);
+
+    const adminUser = this.userRepository.create({
+      email: adminEmail,
+      username: adminUsername,
+      password: hashedPassword,
+      role: 'admin',
+    });
+
+    await this.userRepository.save(adminUser);
+    this.logger.log('Admin user created successfully from .env credentials.');
+  }
 
   async createUser(dto: CreateUserDto): Promise<User> {
     if (dto.password) {
